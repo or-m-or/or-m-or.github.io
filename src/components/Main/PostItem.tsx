@@ -8,9 +8,11 @@ type PostItemProps = {
     date: string
     categories: string[]
     summary: string
-    thumbnail: string
+    thumbnail: {
+        publicURL: string
+    }
     link: string
-}
+  }
 
 const PostItemWrapper = styled(Link)`
     display: flex;
@@ -93,13 +95,13 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
     date,
     categories,
     summary,
-    thumbnail,
+    thumbnail: { publicURL },
     link,
 }) {
     return (
         <PostItemWrapper to={link}>
-            <ThumbnailImage src={thumbnail} alt="Post Item Image" />
-
+            <ThumbnailImage src={publicURL} alt="Post Item Image" />
+    
             <PostItemContent>
                 <Title>{title}</Title>
                 <Date>{date}</Date>
@@ -112,6 +114,6 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
             </PostItemContent>
         </PostItemWrapper>
     )
-}
-
-export default PostItem
+  }
+  
+  export default PostItem
