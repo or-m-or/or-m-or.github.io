@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import PostItem from 'components/Main/PostItem'
-
+import { PostListItemType } from 'types/PostItem.types'
 
 export type PostType = {
     node: {
@@ -19,7 +19,7 @@ export type PostType = {
 }
 
 type PostListProps = {
-    posts: PostType[]
+    posts: PostListItemType[]
 }
 
 const PostListWrapper = styled.div`
