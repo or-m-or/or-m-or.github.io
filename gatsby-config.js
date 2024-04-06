@@ -31,6 +31,16 @@ module.exports = {
         path: `${__dirname}/contents`,
       },
     },
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: ['auto', 'webp'],
+          quality: 100,
+          placeholder: 'blurred',
+        }
+      }
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-image`,
     {
