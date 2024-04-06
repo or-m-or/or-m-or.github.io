@@ -93,11 +93,14 @@ export default IndexPage
 export const getPostList = graphql`
     query getPostList {
         allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
+            sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
         ) {
             edges {
                 node {
-                id
+                    id
+                    fields {
+                        slug
+                    }
                     frontmatter {
                         title
                         summary
@@ -114,7 +117,7 @@ export const getPostList = graphql`
         }
         file(name: { eq: "profile-image" }) {
             childImageSharp {
-              gatsbyImageData(width: 120, height: 120)
+                gatsbyImageData(width: 120, height: 120)
             }
         }
     }
