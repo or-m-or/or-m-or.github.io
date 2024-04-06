@@ -46,8 +46,8 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
     const parsed: ParsedQuery<string> = queryString.parse(search)
     const selectedCategory: string =
         typeof parsed.category !== 'string' || !parsed.category
-            ? 'All'
-            : parsed.category
+        ? 'All'
+        : parsed.category
 
     const categoryList = useMemo(
         () =>

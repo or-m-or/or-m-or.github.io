@@ -1,6 +1,6 @@
 ---
 date: '2020-07-29'
-title: 'Test_Web0'
+title: 'Test_Web1'
 categories: ['Web']
 summary: 'Web 카테고리 test'
 thumbnail: './test_web.png'
