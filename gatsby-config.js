@@ -96,5 +96,13 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-plugin-canonical-urls',
+      options: {
+        siteUrl: 'https://or-m-or.github.io/',
+        stripQueryString: true,
+      },
+    },
+    `gatsby-plugin-sitemap`,
   ],
 };
