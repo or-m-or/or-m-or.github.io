@@ -9,8 +9,8 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `주니어 개발자의 개발 블로그`,
-    description: `주니어 개발자로서 배우고 익히는 지식들을 기록하기 위해 개설된 블로그입니다.`,
+    title: `or-m-or | Dev Log`,
+    description: `태식이의 무럭무럭 성장 일기`,
     author: `@or-m-or`,
     siteUrl: `https://or-m-or.github.io/`,
   },

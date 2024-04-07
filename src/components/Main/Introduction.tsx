@@ -11,7 +11,7 @@ type IntroductionProps = {
 const Background = styled.div`
     width: 100%;
     background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-    color: #ffffff;
+    color: #ffffff; // 제목 글자 색
 `
 
 const Wrapper = styled.div`
@@ -59,8 +59,8 @@ const Introduction: FunctionComponent<IntroductionProps> = function ({
         <ProfileImage profileImage={profileImage}/>
 
         <div>
+          <Title>or.m.or Dev Log</Title>
           <SubTitle>Nice to Meet You,</SubTitle>
-          <Title>I'm Junior Frontend Developer Hyun.</Title>
         </div>
       </Wrapper>
     </Background>
