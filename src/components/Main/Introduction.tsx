@@ -10,8 +10,8 @@ type IntroductionProps = {
 
 const Background = styled.div`
     width: 100%;
-    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-    color: #ffffff; // 제목 글자 색
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);  // 제목 배경 색
+    color: #ffffff;  // 제목 글자 색
 `
 
 const Wrapper = styled.div`
@@ -20,7 +20,7 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: flex-start;
     width: 768px;
-    height: 400px;
+    height: 400px;  // 타이틀(상단 높이)
     margin: 0 auto;
 
     // 반응형 디자인 구현
