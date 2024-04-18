@@ -1,22 +1,23 @@
+/* 페이지 상단 소개 글 */
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
 
 type ProfileImageProps = {
-    profileImage: IGatsbyImageData
+    profileImage: IGatsbyImageData // 프로필 이미지 데이터 타입 지정
 }
 
-
+// Image Style 지정
 const ProfileImageWrapper = styled(GatsbyImage)`
-    width: 120px;
-    height: 120px;
-    margin-bottom: 30px;
-    border-radius: 50%;
+    width: 120px;        // 이미지 너비
+    height: 120px;       // 이미지 높이
+    margin-bottom: 30px; // 하단 마진
+    border-radius: 50%;  // 원형 이미지
 
     @media (max-width: 768px) {
-        width: 80px;
-        height: 80px;
+        width: 80px;     // 모바일 -> 이미지 너비
+        height: 80px;    // 모바일 -> 이미지 높이
     }
 `
 

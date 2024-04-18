@@ -3,16 +3,19 @@ import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 
 
+// CategoryItemProps 타입 정의: 카테고리가 활성 상태인지 표시
 type CategoryItemProps = {
     active: boolean;
 }
-  
+
+
 type GatsbyLinkProps = {
     children: ReactNode;
     className?: string;
     to: string;
 } & CategoryItemProps
 
+// CategoryListProps 타입 정의: 선택된 카테고리와 목록 정보 포함
 export type CategoryListProps = {
   selectedCategory: string
   categoryList: {
@@ -21,6 +24,7 @@ export type CategoryListProps = {
   }
 }
 
+// 카테고리 리스트 스타일 지정
 const CategoryListWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -34,7 +38,7 @@ const CategoryListWrapper = styled.div`
     }
 `
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// 카테고리 아이템 스타일 지정
 const CategoryItem = styled(({ active, ...props }: GatsbyLinkProps) => (
     <Link {...props} />
 ))<CategoryItemProps>`
@@ -53,6 +57,7 @@ const CategoryItem = styled(({ active, ...props }: GatsbyLinkProps) => (
     }
 `
 
+// 
 const CategoryList: FunctionComponent<CategoryListProps> = function ({
   selectedCategory,
   categoryList,

@@ -4,6 +4,8 @@ import GlobalStyle from 'components/Common/GlobalStyle'
 import Footer from 'components/Common/Footer'
 import { Helmet } from 'react-helmet'
 
+
+// Template 컴포넌트의 prop 타입 정의
 type TemplateProps = {
     title: string
     description: string
@@ -12,12 +14,14 @@ type TemplateProps = {
     children: ReactNode
 }
 
+// 메인 컨테이너 스타일 지정
 const Container = styled.main`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  display: flex;          // flexbox 레이아웃 사용
+  flex-direction: column; // 자식 컴포넌트 수직 정렬
+  height: 100%;           // 전체 높이 100%
 `
 
+// 
 const Template: FunctionComponent<TemplateProps> = function ({
     title,
     description,
