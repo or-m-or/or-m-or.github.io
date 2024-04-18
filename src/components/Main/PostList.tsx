@@ -22,35 +22,39 @@ export type PostType = {
     }
 }
 
+// PostList 컴포넌트의 프롭 타입 정의
 type PostListProps = {
     selectedCategory: string
     posts: PostListItemType[]
 }
 
+// 포스트 리스트 래퍼 스타일 컴포넌트
 const PostListWrapper = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr; // 2열 그리드
+    grid-gap: 20px;                 // 그리드 간격
     width: 768px;
-    margin: 0 auto;
+    margin: 0 auto;                 // 중앙 정렬
     padding: 50px 0 100px;
 
     @media (max-width: 768px) {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; // 모바일에서는 1열 그리드
         width: 100%;
         padding: 50px 20px;
     }
 `
 
+// PostList 컴포넌트 정의
 const PostList: FunctionComponent<PostListProps> = function ({
     selectedCategory,
     posts,
 }) {
+    // 무한 스크롤 훅 사용하여 컨테이너 참조 및 포스트 리스트 가져오기
     const { containerRef, postList }: useInfiniteScrollType = useInfiniteScroll(
         selectedCategory,
         posts,
     )
-  
+    // 렌더링 부분
     return (
         <PostListWrapper ref={containerRef}>
             {postList.map(

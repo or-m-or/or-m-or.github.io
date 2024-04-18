@@ -50,7 +50,9 @@ const Title = styled.div`
     font-size: 30px;
     font-weight: 700;
     font-family: "Pacifico", cursive;
-    
+    font-optical-sizing: auto;
+    font-style: normal;
+
     @media (max-width: 768px) {
         font-size: 20px;
     }
@@ -66,7 +68,7 @@ const Introduction: FunctionComponent<IntroductionProps> = function ({
         {/* <ProfileImage profileImage={profileImage}/> */}
 
         <div>
-          <Title>ormor</Title>
+          <Title>ormor tech blog</Title>
           {/* <SubTitle>Nice to Meet You,</SubTitle> */}
         </div>
       </Wrapper>
