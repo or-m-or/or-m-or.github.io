@@ -1,7 +1,7 @@
 import type { SiteConfig } from '~/cfg-schema';
 
 const config: SiteConfig = {
-  siteUrl: 'https://or-m-or.github.io/ormor-blog',
+  siteUrl: 'https://or-m-or.github.io',
   title: 'ormor blog',
   titleTemplate: '%s',
   description: 'minimalism coding blog build with astro',
@@ -18,7 +18,7 @@ const config: SiteConfig = {
     links: [
       {
         label: 'mail',
-        url: 'mailto:your-email@example.com',
+        url: 'mailto:hth815@naver.com',
       },
       {
         label: 'github',
@@ -26,23 +26,15 @@ const config: SiteConfig = {
       },
       {
         label: 'linkedin',
-        url: 'https://www.linkedin.com/in/your-linkedin-username',
-      },
-      {
-        label: 'x',
-        url: 'https://twitter.com/your-twitter-username',
-      },
-      {
-        label: 'instagram',
-        url: 'https://www.instagram.com/your-instagram-username',
+        url: 'https://www.linkedin.com/in/ormor',
       },
     ],
   },
   // @see https://giscus.app/
   giscus: {
-    repo: 'bepyan/whitespace-blog-template',
+    repo: 'or-m-or/or-m-or.github.io',
     // change this to your repo id
-    repoId: 'R_kgDONQJYcQ',
+    repoId: 'R_kgDOQy2OyA',
   },
 };
 

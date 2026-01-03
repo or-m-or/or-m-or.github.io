@@ -24,7 +24,6 @@ import { cfg } from './src/cfg';
 // https://astro.build/config
 export default defineConfig({
   site: cfg.siteUrl,
-  base: '/ormor-blog/'
   output: 'static',
   vite: {
     plugins: [tailwindcss()],
