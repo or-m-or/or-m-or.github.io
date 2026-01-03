@@ -2,7 +2,7 @@ import type { SiteConfig } from '~/cfg-schema';
 
 const config: SiteConfig = {
   siteUrl: 'https://or-m-or.github.io',
-  title: 'ormor blog',
+  title: '허태환 · ormor',
   titleTemplate: '%s',
   description: 'minimalism coding blog build with astro',
   favicon: '/favicon.svg',
