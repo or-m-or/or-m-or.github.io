@@ -5,16 +5,16 @@ import ThemeToggle from '~/components/ui/theme-toggle.astro';
 const isRoot = Astro.url.pathname === '/';
 ---
 
-<div class="mb-10 flex items-center gap-2 font-serif font-semibold">
-  {
-    !isRoot && (
+{
+  !isRoot && (
+    <div class="mb-10 flex items-center gap-2 font-serif font-semibold">
       <a
-        class="hover:bg-gray-soft inline-block rounded-md p-1 text-2xl transition active:scale-95"
+        class="hover:bg-gray-soft inline-block rounded-md p-1 transition active:scale-95"
         href="/"
       >
-        <BackIcon />
+        <BackIcon width={28} height={28} />
       </a>
-    )
-  }
-  <ThemeToggle class="ml-auto" />
-</div>
+      <ThemeToggle class="ml-auto" />
+    </div>
+  )
+}

@@ -51,7 +51,7 @@ function TagFilter({
   return (
     <div className="relative my-14 border-l pl-4">
       <div className="absolute -left-16 select-none">
-        <span className="-mx-1 inline-block rounded-md px-1">Tags</span>
+        <span className="-mx-1 inline-block rounded-md px-1" style={{ fontSize: '1.125rem' }}>Tags</span>
       </div>
       <div className="flex gap-2">
         {tags.map((tag) => (
@@ -62,6 +62,7 @@ function TagFilter({
                 hasSelected && selectedTag === tag && 'opacity-100!',
                 hasSelected && selectedTag !== tag && 'opacity-40!',
               )}
+              style={{ fontSize: '1.25rem' }}
               onClick={() => handleSelectTag(tag)}
             >
               {tag}
@@ -97,7 +98,7 @@ function PostYearList({ posts }: { posts: PostData[] }) {
         return (
           <div key={year} className="group/year relative">
             <div className="absolute -left-20 select-none">
-              <h2 className="group-hover/year:bg-gray-soft -mx-1 rounded-md px-1 transition group-hover:opacity-40 group-hover/year:opacity-100!">
+              <h2 className="group-hover/year:bg-gray-soft -mx-1 rounded-md px-1 transition group-hover:opacity-40 group-hover/year:opacity-100!" style={{ fontSize: '1.125rem' }}>
                 {year}
               </h2>
             </div>
@@ -109,8 +110,8 @@ function PostYearList({ posts }: { posts: PostData[] }) {
                       href={`/posts/${post.slug}`}
                       className="hover:bg-gray-soft -mx-1 flex items-center gap-2 rounded-md px-1 transition group-hover:opacity-60 hover:opacity-100!"
                     >
-                      <span className="text-text-1">{post.data.title}</span>
-                      <span className="text-text-2 shrink-0 text-sm">
+                      <span className="text-text-1" style={{ fontSize: '1.25rem' }}>{post.data.title}</span>
+                      <span className="text-text-2 shrink-0" style={{ fontSize: '1rem' }}>
                         {format(new Date(post.data.date), 'MM. dd.')}
                       </span>
                     </a>

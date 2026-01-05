@@ -1,6 +1,7 @@
 import type { Element } from 'hast';
 
 import { addClassToHast, type ShikiTransformer } from 'shiki';
+/* 코드 하이라이트를 위한 변환기??, 아직 미확인함 */
 
 const ignoreLangList = ['plaintext'];
 

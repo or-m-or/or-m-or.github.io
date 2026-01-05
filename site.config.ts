@@ -2,9 +2,9 @@ import type { SiteConfig } from '~/cfg-schema';
 
 const config: SiteConfig = {
   siteUrl: 'https://or-m-or.github.io',
-  title: '허태환 · ormor',
+  title: "ormor's archive",
   titleTemplate: '%s',
-  description: 'minimalism coding blog build with astro',
+  description: 'A personal archive of TAE HWAN’s development notes',
   favicon: '/favicon.svg',
   ogImage: '/og.avif',
   // analytics: {
@@ -14,7 +14,8 @@ const config: SiteConfig = {
   bio: {
     name: 'HEO TAE HWAN',
     avatar: '/avatar.avif',
-    description: 'your long description',
+    description:
+      `게임 서버 개발자를 꿈꾸는 학생입니다. \n 학습하며 이해하고 고민한 내용을 여기에 남겨보려 합니다.`,
     links: [
       {
         label: 'mail',
