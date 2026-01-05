@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { useState } from 'react';
-import { CloseIcon } from '~/components/ui/icons';
+import { CloseIcon, TagIcon } from '~/components/ui/icons';
 import type { PostData } from '~/lib/types';
 import { cn } from '~/lib/utils';
 
@@ -49,16 +49,16 @@ function TagFilter({
   }
 
   return (
-    <div className="my-16 relative">
-      <div className="mb-5 -ml-5 pl-5">
-        <span className="text-text-3 text-xs tracking-widest font-semibold" style={{ fontSize: '0.9rem', letterSpacing: '0.2em' }}>
+    <div className="my-16">
+      <div className="mb-4 flex items-center gap-2">
+        <TagIcon width="0.9rem" height="0.9rem" className="text-text-2" />
+        <span className="text-text-2 text-xs tracking-widest font-semibold" style={{ fontSize: '0.9rem', letterSpacing: '0.2em' }}>
           꼬리표
         </span>
       </div>
-      <div className="relative border-l border-b border-divider/50 rounded-bl-2xl pl-5 pb-6 transition-all duration-300 hover:border-divider/80">
-        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-divider/40 to-divider/60" />
-        {tags.length > 0 ? (
-          <div className="flex flex-wrap items-center gap-2.5">
+      {tags.length > 0 ? (
+        <div className="relative">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-3 pl-1">
             {tags.map((tag) => (
               <div key={tag} className="inline-block">
                 <button
@@ -85,10 +85,12 @@ function TagFilter({
               </button>
             )}
           </div>
-        ) : (
+        </div>
+      ) : (
+        <div className="pl-1">
           <p className="text-text-3">준비 중입니다...</p>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -124,8 +126,8 @@ function PostCategoryList({ posts }: { posts: PostData[] }) {
         return (
           <div key={category} className="group/category relative">
             <div className="mb-5 -ml-5 pl-5">
-              <h2 className="text-text-3 text-xs uppercase tracking-widest font-semibold group-hover/category:text-text-2 transition-colors duration-200" style={{ fontSize: '0.9rem', letterSpacing: '0.2em' }}>
-                <span className="text-text-2 font-black">{config.label}</span>, {config.description}
+              <h2 className="text-text-3 dark:text-text-2 text-xs uppercase tracking-widest font-semibold group-hover/category:text-text-2 dark:group-hover/category:text-text-1 transition-colors duration-200" style={{ fontSize: '0.9rem', letterSpacing: '0.2em' }}>
+                <span className="text-text-2 dark:text-text-1 font-black">{config.label}</span>, {config.description}
               </h2>
             </div>
             <div className="relative border-l border-b border-divider/50 rounded-bl-2xl pl-5 pb-6 transition-all duration-300 group-hover/category:border-divider/80">
