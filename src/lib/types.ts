@@ -13,6 +13,7 @@ export const postSchema = z.object({
   updatedDate: z.coerce.date().optional(),
   tags: z.array(z.string()).optional(),
   draft: z.boolean().optional(),
+  category: z.enum(['thoughts', 'knowledge', 'works']).optional(),
 });
 export type Post = z.infer<typeof postSchema>;
 

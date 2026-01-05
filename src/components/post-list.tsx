@@ -24,7 +24,7 @@ export default function PostList({
         selectedTag={selectedTag}
         setSelectedTag={setSelectedTag}
       />
-      <PostYearList posts={filteredPosts} />
+      <PostCategoryList posts={filteredPosts} />
     </>
   );
 }
@@ -49,76 +49,111 @@ function TagFilter({
   }
 
   return (
-    <div className="relative my-14 border-l pl-4">
-      <div className="absolute -left-16 select-none">
-        <span className="-mx-1 inline-block rounded-md px-1" style={{ fontSize: '1.125rem' }}>Tags</span>
+    <div className="my-16 relative">
+      <div className="mb-5 -ml-5 pl-5">
+        <span className="text-text-3 text-xs tracking-widest font-semibold" style={{ fontSize: '0.9rem', letterSpacing: '0.2em' }}>
+          꼬리표
+        </span>
       </div>
-      <div className="flex gap-2">
-        {tags.map((tag) => (
-          <div key={tag} className="inline-block">
-            <button
-              className={cn(
-                'link group-hover:opacity-60 hover:opacity-100!',
-                hasSelected && selectedTag === tag && 'opacity-100!',
-                hasSelected && selectedTag !== tag && 'opacity-40!',
-              )}
-              style={{ fontSize: '1.25rem' }}
-              onClick={() => handleSelectTag(tag)}
-            >
-              {tag}
-            </button>
+      <div className="relative border-l border-b border-divider/50 rounded-bl-2xl pl-5 pb-6 transition-all duration-300 hover:border-divider/80">
+        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-divider/40 to-divider/60" />
+        {tags.length > 0 ? (
+          <div className="flex flex-wrap items-center gap-2.5">
+            {tags.map((tag) => (
+              <div key={tag} className="inline-block">
+                <button
+                  className={cn(
+                    'link transition-all duration-200',
+                    'group-hover:opacity-60 hover:opacity-100!',
+                    hasSelected && selectedTag === tag && 'opacity-100!',
+                    hasSelected && selectedTag !== tag && 'opacity-40!',
+                  )}
+                  style={{ fontSize: '1.25rem' }}
+                  onClick={() => handleSelectTag(tag)}
+                >
+                  {tag}
+                </button>
+              </div>
+            ))}
+            {hasSelected && (
+              <button
+                className="text-text-3 hover:text-text-1 p-1.5 rounded-md hover:bg-gray-soft transition-all duration-200"
+                onClick={() => setSelectedTag(undefined)}
+                aria-label="Clear filter"
+              >
+                <CloseIcon width={14} height={14} />
+              </button>
+            )}
           </div>
-        ))}
-        {hasSelected && (
-          <button
-            className="text-text-2 hover:text-text-1 p-1 transition"
-            onClick={() => setSelectedTag(undefined)}
-          >
-            <CloseIcon />
-          </button>
+        ) : (
+          <p className="text-text-3">준비 중입니다...</p>
         )}
       </div>
     </div>
   );
 }
 
-function PostYearList({ posts }: { posts: PostData[] }) {
-  const yearList = Object.entries(
-    posts.reduce<{ [year: string]: PostData[] }>((ac, post) => {
-      const year = new Date(post.data.date).getFullYear();
-      if (!ac[year]) ac[year] = [];
-      ac[year].push(post);
-      return ac;
-    }, {}),
-  ).sort(([yearA], [yearB]) => +yearB - +yearA);
+const CATEGORY_CONFIG = {
+  thoughts: {
+    label: '思錄',
+    description: '경험과 사유로 얻은 인사이트에 대한 기록',
+  },
+  knowledge: {
+    label: '知錄',
+    description: '이해한 지식과 개념을 정리한 기록',
+  },
+  works: {
+    label: '作錄',
+    description: '직접 만들고 구현한 과정의 기록',
+  },
+} as const;
+
+const CATEGORY_ORDER: Array<keyof typeof CATEGORY_CONFIG> = ['thoughts', 'knowledge', 'works'];
+
+function PostCategoryList({ posts }: { posts: PostData[] }) {
+  const categoryList = CATEGORY_ORDER.map((category) => {
+    const postList = posts.filter((post) => post.data.category === category);
+    return { category, postList };
+  });
 
   return (
-    <div className="group my-14 space-y-7 border-l pl-4">
-      {yearList.map(([year, postList]) => {
+    <div className="my-16 space-y-14">
+      {categoryList.map(({ category, postList }, index) => {
+        const isLast = index === categoryList.length - 1;
+        const config = CATEGORY_CONFIG[category];
         return (
-          <div key={year} className="group/year relative">
-            <div className="absolute -left-20 select-none">
-              <h2 className="group-hover/year:bg-gray-soft -mx-1 rounded-md px-1 transition group-hover:opacity-40 group-hover/year:opacity-100!" style={{ fontSize: '1.125rem' }}>
-                {year}
+          <div key={category} className="group/category relative">
+            <div className="mb-5 -ml-5 pl-5">
+              <h2 className="text-text-3 text-xs uppercase tracking-widest font-semibold group-hover/category:text-text-2 transition-colors duration-200" style={{ fontSize: '0.9rem', letterSpacing: '0.2em' }}>
+                <span className="text-text-2 font-black">{config.label}</span>, {config.description}
               </h2>
             </div>
-            <ul className="flex flex-col items-start gap-2">
-              {postList.map((post) => {
-                return (
-                  <li key={post.slug}>
-                    <a
-                      href={`/posts/${post.slug}`}
-                      className="hover:bg-gray-soft -mx-1 flex items-center gap-2 rounded-md px-1 transition group-hover:opacity-60 hover:opacity-100!"
-                    >
-                      <span className="text-text-1" style={{ fontSize: '1.25rem' }}>{post.data.title}</span>
-                      <span className="text-text-2 shrink-0" style={{ fontSize: '1rem' }}>
-                        {format(new Date(post.data.date), 'MM. dd.')}
-                      </span>
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
+            <div className="relative border-l border-b border-divider/50 rounded-bl-2xl pl-5 pb-6 transition-all duration-300 group-hover/category:border-divider/80">
+              <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-divider/40 to-divider/60" />
+              {postList.length > 0 ? (
+                <ul className="flex flex-col items-start gap-2.5">
+                  {postList.map((post) => {
+                    return (
+                      <li key={post.slug} className="w-full">
+                        <a
+                          href={`/posts/${post.slug}`}
+                          className="hover:bg-gray-soft/50 -mx-1.5 flex items-center gap-3 rounded-lg px-1.5 py-1.5 transition-all duration-200 group-hover/category:opacity-60 hover:opacity-100! hover:translate-x-0.5 group/item"
+                        >
+                          <span className="text-text-1 flex-1 group-hover/item:text-text-1 transition-colors" style={{ fontSize: '1.125rem' }}>
+                            {post.data.title}
+                          </span>
+                          <span className="text-text-3 shrink-0 tabular-nums transition-colors" style={{ fontSize: '0.875rem' }}>
+                            {format(new Date(post.data.date), 'yyyy. MM. dd.')}
+                          </span>
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                <p className="text-text-3">준비 중입니다...</p>
+              )}
+            </div>
           </div>
         );
       })}

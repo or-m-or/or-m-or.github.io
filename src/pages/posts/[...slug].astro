@@ -7,13 +7,31 @@ export async function getStaticPaths() {
 
   return posts.map((post, i) => {
     const relatedPosts = getRelatedPosts(post, posts);
+    
+    // 같은 그룹(category) 내 게시물만 필터링하고 날짜 내림차순 정렬
+    const sameCategoryPosts = posts
+      .filter((p) => p.data.category === post.data.category && p.slug !== post.slug)
+      .sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
+    
+    // 현재 게시물의 날짜
+    const currentDate = new Date(post.data.date).valueOf();
+    
+    // 같은 그룹 내에서 현재 게시물보다 이전 날짜의 게시물 (더 오래된 것)
+    const prevPost = sameCategoryPosts.find(
+      (p) => new Date(p.data.date).valueOf() < currentDate
+    );
+    
+    // 같은 그룹 내에서 현재 게시물보다 다음 날짜의 게시물 (더 최신 것)
+    const nextPost = sameCategoryPosts.find(
+      (p) => new Date(p.data.date).valueOf() > currentDate
+    );
 
     return {
       params: { slug: post.slug },
       props: {
         post,
-        prevPost: posts[i + 1],
-        nextPost: posts[i - 1],
+        prevPost,
+        nextPost,
         relatedPosts,
       },
     };

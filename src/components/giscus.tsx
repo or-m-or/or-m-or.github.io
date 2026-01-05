@@ -29,6 +29,14 @@ export const GiscusSection = ({
   ...props
 }: React.HTMLAttributes<HTMLElement> & { giscus: GiscusSchema }) => {
   useEffect(() => {
+    const giscusContainer = document.querySelector('#giscus');
+    if (!giscusContainer) return;
+
+    // 이미 스크립트가 로드되어 있는지 확인
+    if (giscusContainer.querySelector('script[src="https://giscus.app/client.js"]')) {
+      return;
+    }
+
     const theme: keyof typeof giscusThemes =
       document.documentElement.classList.contains('dark') ? 'dark' : 'light';
 
@@ -53,8 +61,8 @@ export const GiscusSection = ({
     Object.entries(giscusAttributes).forEach(([key, value]) =>
       giscusScript.setAttribute(key, value),
     );
-    document.querySelector('#giscus')?.appendChild(giscusScript);
-  }, []);
+    giscusContainer.appendChild(giscusScript);
+  }, [giscus]);
 
   return (
     <section {...props} style={{ minHeight: '372px' }} id="giscus"></section>

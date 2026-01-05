@@ -8,22 +8,22 @@ interface Props {
 const { relatedPosts } = Astro.props;
 ---
 
-{
-  relatedPosts.length && (
-    <div class="text-text-2">
-      <p>Related Posts</p>
-      <ul>
-        {relatedPosts.map((p) => {
-          return (
-            <li>
-              <span class="font-mono">&gt; </span>
-              <a class="link text-text-1" href={`/posts/${p.slug}`}>
-                {p.data.title}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  )
-}
+<div class="text-text-2">
+  <p>함께 보면 좋은 기록</p>
+  {relatedPosts.length > 0 ? (
+    <ul>
+      {relatedPosts.map((p) => {
+        return (
+          <li>
+            <span class="font-mono">&gt; </span>
+            <a class="link text-text-1" href={`/posts/${p.slug}`}>
+              {p.data.title}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  ) : (
+    <p class="text-text-3">...연관된 기록을 준비 중에 있습니다.</p>
+  )}
+</div>

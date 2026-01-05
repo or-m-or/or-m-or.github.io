@@ -1,14 +1,16 @@
 ---
 import { format } from 'date-fns';
+import PostTags from './post-tags.astro';
 
 interface Props {
   class?: string;
   title: string;
   date: Date | string | number;
   readingTime?: string;
+  tags?: string[];
 }
 
-const { class: className, title, date, readingTime } = Astro.props;
+const { class: className, title, date, readingTime, tags = [] } = Astro.props;
 ---
 
 <div class={className}>
@@ -17,4 +19,5 @@ const { class: className, title, date, readingTime } = Astro.props;
     <span>{format(date, 'MMM dd, yyyy')}</span>
     {readingTime && <span>· {readingTime}</span>}
   </div>
+  {tags.length > 0 && <PostTags {tags} class="mt-4" />}
 </div>

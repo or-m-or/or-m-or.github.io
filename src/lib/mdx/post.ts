@@ -23,8 +23,9 @@ export const getRelatedPosts = (
   post: CollectionEntry<'posts'>,
   postList: CollectionEntry<'posts'>[],
 ) => {
+  const currentCategory = post.data.category;
   return postList
-    .filter((p) => p.slug !== post.slug)
+    .filter((p) => p.slug !== post.slug && p.data.category === currentCategory)
     .map((p) => {
       const tagPoint = post.data.tags
         ? post.data.tags.filter((tag) => p.data.tags?.includes(tag)).length

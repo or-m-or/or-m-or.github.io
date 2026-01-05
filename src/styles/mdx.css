@@ -40,11 +40,13 @@
 }
 
 .mdx > :where(h1, h2) {
-  margin-top: var(--spacing-page-y);
+  margin-top: calc(var(--spacing-page-y) * 0.6);
+  margin-bottom: 16px;
 }
 
 .mdx > :where(h3, h4) {
-  margin-top: calc(var(--spacing-page-y) * 3 / 5);
+  margin-top: calc(var(--spacing-page-y) * 0.4);
+  margin-bottom: 16px;
 }
 
 .mdx > :where(h1, h2) + :where(h3, h4) {
@@ -108,7 +110,7 @@
   display: list-item;
 }
 .mdx ul:not(.twoslash-completion-list) li::marker {
-  color: var(--c-gray-3);
+  color: var(--c-gray-2);
 }
 .mdx ul:not(.twoslash-completion-list) li + li,
 .mdx ul:not(.twoslash-completion-list) li > ul {

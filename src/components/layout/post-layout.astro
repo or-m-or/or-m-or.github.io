@@ -45,8 +45,8 @@ const { Content, remarkPluginFrontmatter } = await post.render();
     title={post.data.title}
     date={post.data.date}
     readingTime={remarkPluginFrontmatter.minutesRead}
+    tags={tags}
   />
-  <PostTags {tags} class="mb-10" />
   <article class="mdx">
     <Content components={{ img: PostImage }} />
     <hr />
